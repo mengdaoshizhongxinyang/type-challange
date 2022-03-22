@@ -1,0 +1,13 @@
+import { Equal, Expect } from '@type-challenges/utils'
+type Unique<T extends unknown[],P extends any[]=[]> =
+  T extends [infer L,...infer R]
+    ? L extends P[number]
+      ? Unique<R,P>
+      : Unique<R,[...P,L]>
+    : P
+
+type cases = [
+  Expect<Equal<Unique<[1, 1, 2, 2, 3, 3]>, [1, 2, 3]>>,
+  Expect<Equal<Unique<[1, 2, 3, 4, 4, 5, 6, 7]>, [1, 2, 3, 4, 5, 6, 7]>>,
+  Expect<Equal<Unique<[1, "a", 2, "b", 2, "a"]>, [1, "a", 2, "b"]>>
+]
