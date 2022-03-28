@@ -10,7 +10,7 @@ type Split<T extends string,P extends string>=T extends `${infer L}${P}${infer R
       ?[T]
       :string[]
 
-type d=Split<string, 'whatever'>
+type d=Split<'Hi! How are you?', ' '>
 
 
 
